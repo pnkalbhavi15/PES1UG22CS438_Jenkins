@@ -1,12 +1,16 @@
 pipeline {
     agent any
 
+    environment {
+        SRN = "PES1UG22CS438" 
+    }
+
     stages {
         stage('Build') {
             steps {
                 script {
-                    echo 'Building the project...'
-                    sh 'g++ -o PES1UG22CS438-1 hello.cpp'  // Compile C++ file
+                    echo 'Building the C++ application...'
+                    sh "g++ -o main/${SRN}-1 main/hello.cpp"  // Compiling with SRN format
                 }
             }
         }
@@ -14,8 +18,8 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    echo 'Running tests...'
-                    sh './PES1UG22CS438-1'  // Execute compiled C++ file
+                    echo 'Running the application...'
+                    sh "./main/${SRN}-1"  // Running the compiled program
                 }
             }
         }
@@ -23,7 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    echo 'Deploying the application...'
+                    echo 'Deployment simulation...'
                     sh 'echo "Deployment Successful!"'
                 }
             }
@@ -32,7 +36,7 @@ pipeline {
 
     post {
         failure {
-            echo 'Pipeline failed'  // Post condition on failure
+            echo 'Pipeline failed'  // Executes when any stage fails
         }
         success {
             echo 'Pipeline executed successfully'
