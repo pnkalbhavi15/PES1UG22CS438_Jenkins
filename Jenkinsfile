@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running the application...'
-                    sh 'exit 1'  // Running the compiled program
+                    sh "./main/${SRN}-1"  // Running the compiled program
                 }
             }
         }
