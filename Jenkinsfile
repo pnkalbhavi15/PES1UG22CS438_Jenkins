@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the project...'
-                    sh 'g++ -o PES1UG22CS438-1 hello.cpp'  // Compiling the C++ file
+                    sh 'g++ -o PES1UG22CS438-1 hello.cpp'  // Compile C++ file
                 }
             }
         }
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running tests...'
-                    sh './PES1UG22CS438-1'  // Running the compiled C++ program
+                    sh './PES1UG22CS438-1'  // Execute compiled C++ file
                 }
             }
         }
@@ -32,7 +32,7 @@ pipeline {
 
     post {
         failure {
-            echo 'Pipeline failed'
+            echo 'Pipeline failed'  // Post condition on failure
         }
         success {
             echo 'Pipeline executed successfully'
